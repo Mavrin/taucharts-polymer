@@ -1,6 +1,6 @@
 {
   "name": "taucharts-polymer",
-  "version": "1.0.3",
+  "version": "0.0.1",
   "authors": [
     "Anonymous <anonymous@example.com>"
   ],
@@ -18,7 +18,8 @@
     "/test/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.1.0"
+    "polymer": "Polymer/polymer#^1.1.0",
+    "tauCharts": "taucharts#~0.6.3"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

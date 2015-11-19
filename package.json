@@ -1,0 +1,30 @@
+{
+  "name": "taucharts-polymer",
+  "version": "0.0.1",
+  "description": "0.0.1",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "polyserve -p 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mavrin/taucharts-polymer.git"
+  },
+  "keywords": [
+    "taucharts",
+    "polymer"
+  ],
+  "author": "konstantin krivlenia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mavrin/taucharts-polymer/issues"
+  },
+  "homepage": "https://github.com/Mavrin/taucharts-polymer#readme",
+  "devDependencies": {
+    "polyserve": "^0.5.0"
+  }
+}
