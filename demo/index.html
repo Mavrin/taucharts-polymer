@@ -16,32 +16,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../taucharts-polymer.html">
   </head>
-  <body unresolved>
+  <body >
 
     <p>An example of <code>&lt;taucharts-polymer&gt;</code>:</p>
 
-    <p>Make words! <button id="saybtn">Say Something</button></p>
-    <p>Make lasers! <button id="laserbtn">Fire lasers</button></p>
-
-    <taucharts-polymer author='{"name": "Lord Meowser", "image": "http://placekitten.com/g/200/300"}' fancy>
-      <h2>Hello taucharts-polymer</h2>
-    </taucharts-polymer>
+    <taucharts-polymer x="day" y="count" type="bar" data='[{"day":1, "count":5},{"day":5, "count":6}]'></taucharts-polymer>
+    <taucharts-polymer x="day" y="count" type="scatterplot" data='[{"day":1, "count":5},{"day":5, "count":6}]'></taucharts-polymer>
+    <taucharts-polymer x="day" y="count" type="line" data='[{"day":1, "count":5},{"day":5, "count":6}]'></taucharts-polymer>
 
     <script>
       var seedElement = document.querySelector('taucharts-polymer');
-      
-      document.querySelector('#saybtn').addEventListener('click', function() {
-        alert(seedElement.sayHello('Hallo!'));
-      });
-      
-      document.querySelector('#laserbtn').addEventListener('click', function() {
-        seedElement.fireLasers();
-      });
-      
-      document.addEventListener("taucharts-polymer-lasers", function(e) {
-        console.log(e.detail.sound);
-      });
-      
+
     </script>
 
   </body>

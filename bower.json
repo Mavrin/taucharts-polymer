@@ -1,6 +1,6 @@
 {
   "name": "taucharts-polymer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "authors": [
     "Anonymous <anonymous@example.com>"
   ],
@@ -18,7 +18,7 @@
     "/test/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.1.0",
+    "polymer": "Polymer/polymer#^1.2.3",
     "tauCharts": "taucharts#~0.6.3"
   },
   "devDependencies": {
