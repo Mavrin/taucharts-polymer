@@ -58,13 +58,16 @@ Example:
                 type: String
             },
             x: {
-
+                type: String
+            },
+            y: {
+                type: String
             },
             color: {
                 type: String
             },
-            y: {
-
+            facet: {
+                type: Object
             }
         },
 
@@ -80,10 +83,16 @@ Example:
         },
 
         attached: function () {
+            var x = this.x;
+            var y = this.y;
+            if (this.facet) {
+                x = this.facet.x;
+                y = this.facet.y;
+            }
             this.chart = new tauCharts.Chart({
                 type: this.type,
-                x: this.x,
-                y: this.y,
+                x: x,
+                y: y,
                 color: this.color,
                 data: this.data
             });
