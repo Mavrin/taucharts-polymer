@@ -1,0 +1,35 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>taucharts-polymer Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../taucharts-polymer.html">
+  </head>
+  <body >
+
+    <p>An example of <code>&lt;taucharts-polymer&gt;</code>:</p>
+
+    <taucharts-polymer x="day" y="count" type="bar" data='[{"day":1, "count":5},{"day":5, "count":6}]' export-to-config='{"cssPaths":["../../tauCharts/build/production/tauCharts.min.css"]}' export-to="true"></taucharts-polymer>
+    <taucharts-polymer x="day" y="count" type="scatterplot" data='[{"day":1, "count":5},{"day":5, "count":6}]'></taucharts-polymer>
+    <taucharts-polymer x="day" y="count" type="line" data='[{"day":1, "count":5},{"day":5, "count":6}]'></taucharts-polymer>
+    <taucharts-polymer x="day" y="count" color="category" type="line" data='[{"day":1, "count":5, "category":"one"},{"day":5, "count":6, "category":"one"},{"day":2, "count":5, "category":"two"},{"day":7, "count":6, "category":"two"},{"day":8, "count":5, "category":"one"},{"day":9, "count":6, "category":"one"}]'></taucharts-polymer>
+    <taucharts-polymer facet='{"x":["day"],"y":["category","count"]}' color="category" type="line" data='[{"day":1, "count":5, "category":"one"},{"day":5, "count":6, "category":"one"},{"day":2, "count":5, "category":"two"},{"day":7, "count":6, "category":"two"},{"day":8, "count":5, "category":"one"},{"day":9, "count":6, "category":"one"}]'></taucharts-polymer>
+
+    <script>
+      var seedElement = document.querySelector('taucharts-polymer');
+
+    </script>
+
+  </body>
+</html>

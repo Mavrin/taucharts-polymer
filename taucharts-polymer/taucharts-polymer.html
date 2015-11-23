@@ -1,0 +1,149 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="stylesheet" href="../tauCharts/build/production/tauCharts.min.css"/>
+<script src="../d3/d3.min.js"></script>
+<script src="../underscore/underscore-min.js"></script>
+<script src="../tauCharts/build/production/tauCharts.min.js"></script>
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <taucharts-polymer></taucharts-polymer>
+
+@group Seed Elements
+@element taucharts-polymer
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="taucharts-polymer">
+
+    <template>
+        <style>
+            :host {
+                display: block;
+                box-sizing: border-box;
+            }
+        </style>
+        <div id="placeholder"></div>
+    </template>
+
+</dom-module>
+
+<script>
+
+    Polymer({
+
+        is: 'taucharts-polymer',
+
+        properties: {
+            width: {
+                type: Number
+            },
+            height: {
+                type: Number
+            },
+            data: {
+                type: Array
+            },
+            type: {
+                type: String
+            },
+            x: {
+                type: String
+            },
+            y: {
+                type: String
+            },
+            color: {
+                type: String
+            },
+            facet: {
+                type: Object
+            },
+            tooltip: {
+                type: Boolean,
+                value: true
+            },
+            legend: {
+                type: Boolean,
+                value: true
+            },
+            trendline: {
+                type: Boolean,
+                value: true
+            },
+            exportTo: {
+                type: Boolean,
+                value: false
+            },
+            exportToConfig: {
+                type: Object,
+                value: {}
+            }
+        },
+
+        // Element Lifecycle
+
+        ready: function () {
+            // `ready` is called after all elements have been configured, but
+            // propagates bottom-up. This element's children are ready, but parents
+            // are not.
+            //
+            // This is the point where you should make modifications to the DOM (when
+            // necessary), or kick off any processes the element wants to perform.
+        },
+
+        attached: function () {
+            var x = this.x;
+            var y = this.y;
+            var plugins = [];
+            if (this.tooltip) {
+                plugins.push(tauCharts.api.plugins.get('tooltip')())
+            }
+            if (this.legend) {
+                plugins.push(tauCharts.api.plugins.get('legend')())
+            }
+            if (this.trendline) {
+                plugins.push(tauCharts.api.plugins.get('trendline')())
+            }
+            if (this.exportTo) {
+                plugins.push(tauCharts.api.plugins.get('exportTo')(this.exportToConfig))
+            }
+            if (this.facet) {
+                x = this.facet.x;
+                y = this.facet.y;
+            }
+
+            this.chart = new tauCharts.Chart({
+                type: this.type,
+                x: x,
+                y: y,
+                color: this.color,
+                data: this.data,
+                plugins: plugins
+            });
+            var size = {};
+            if (this.width) {
+                size.width = this.width;
+            }
+            if (this.height) {
+                size.height = this.height;
+            }
+            this.chart.renderTo(this.$.placeholder, size);
+        },
+
+        detached: function () {
+            this.chart.destroy();
+        }
+    });
+
+</script>
