@@ -68,6 +68,26 @@ Example:
             },
             facet: {
                 type: Object
+            },
+            tooltip: {
+                type: Boolean,
+                value: true
+            },
+            legend: {
+                type: Boolean,
+                value: true
+            },
+            trendline: {
+                type: Boolean,
+                value: true
+            },
+            exportTo: {
+                type: Boolean,
+                value: false
+            },
+            exportToConfig: {
+                type: Object,
+                value: {}
             }
         },
 
@@ -85,16 +105,31 @@ Example:
         attached: function () {
             var x = this.x;
             var y = this.y;
+            var plugins = [];
+            if (this.tooltip) {
+                plugins.push(tauCharts.api.plugins.get('tooltip')())
+            }
+            if (this.legend) {
+                plugins.push(tauCharts.api.plugins.get('legend')())
+            }
+            if (this.trendline) {
+                plugins.push(tauCharts.api.plugins.get('trendline')())
+            }
+            if (this.exportTo) {
+                plugins.push(tauCharts.api.plugins.get('exportTo')(this.exportToConfig))
+            }
             if (this.facet) {
                 x = this.facet.x;
                 y = this.facet.y;
             }
+
             this.chart = new tauCharts.Chart({
                 type: this.type,
                 x: x,
                 y: y,
                 color: this.color,
-                data: this.data
+                data: this.data,
+                plugins: plugins
             });
             var size = {};
             if (this.width) {
