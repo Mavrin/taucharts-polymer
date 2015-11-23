@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "polyserve -p 3000"
+    "start": "polyserve -p 3000",
+    "ghpages": "node ./tasks/gh-pages.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
   },
   "homepage": "https://github.com/Mavrin/taucharts-polymer#readme",
   "devDependencies": {
+    "fs-extra": "^0.26.2",
+    "gh-pages": "^0.5.0",
     "polyserve": "^0.5.0"
   }
 }
