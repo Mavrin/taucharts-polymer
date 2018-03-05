@@ -6,14 +6,9 @@
   "directories": {
     "test": "test"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "polyserve -p 3000",
-    "ghpages": "node ./tasks/gh-pages.js"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mavrin/taucharts-polymer.git"
+    "url": "git+https://github.com/nathan-collins/taucharts-polymer"
   },
   "keywords": [
     "taucharts",
@@ -22,12 +17,7 @@
   "author": "konstantin krivlenia",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Mavrin/taucharts-polymer/issues"
+    "url": "https://github.com/nathan-collins/taucharts-polymer/issues"
   },
-  "homepage": "https://github.com/Mavrin/taucharts-polymer#readme",
-  "devDependencies": {
-    "fs-extra": "^0.26.2",
-    "gh-pages": "^0.5.0",
-    "polyserve": "^0.5.0"
-  }
+  "homepage": "https://github.com/nathan-collins/taucharts-polymer#readme"
 }

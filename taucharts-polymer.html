@@ -7,7 +7,7 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
 <link rel="stylesheet" href="../tauCharts/build/production/tauCharts.min.css"/>
 <script src="../d3/d3.min.js"></script>
 <script src="../underscore/underscore-min.js"></script>
@@ -40,110 +40,126 @@ Example:
 
 <script>
 
-    Polymer({
+    class TauchartsPolymer extends Polymer.Element {
+      static get is() { return 'taucharts-polymer'; }
+      static get properties() {
+        return {
+          width: {
+            type: Number
+          },
 
-        is: 'taucharts-polymer',
+          height: {
+            type: Number
+          },
 
-        properties: {
-            width: {
-                type: Number
-            },
-            height: {
-                type: Number
-            },
-            data: {
-                type: Array
-            },
-            type: {
-                type: String
-            },
-            x: {
-                type: String
-            },
-            y: {
-                type: String
-            },
-            color: {
-                type: String
-            },
-            facet: {
-                type: Object
-            },
-            tooltip: {
-                type: Boolean,
-                value: true
-            },
-            legend: {
-                type: Boolean,
-                value: true
-            },
-            trendline: {
-                type: Boolean,
-                value: true
-            },
-            exportTo: {
-                type: Boolean,
-                value: false
-            },
-            exportToConfig: {
-                type: Object,
-                value: {}
-            }
-        },
+          data: {
+            type: Array
+          },
 
-        // Element Lifecycle
+          type: {
+              type: String
+          },
 
-        ready: function () {
-            // `ready` is called after all elements have been configured, but
-            // propagates bottom-up. This element's children are ready, but parents
-            // are not.
-            //
-            // This is the point where you should make modifications to the DOM (when
-            // necessary), or kick off any processes the element wants to perform.
-        },
+          x: {
+              type: String
+          },
 
-        attached: function () {
-            var x = this.x;
-            var y = this.y;
-            var plugins = [];
-            if (this.tooltip) {
-                plugins.push(tauCharts.api.plugins.get('tooltip')())
-            }
-            if (this.legend) {
-                plugins.push(tauCharts.api.plugins.get('legend')())
-            }
-            if (this.trendline) {
-                plugins.push(tauCharts.api.plugins.get('trendline')())
-            }
-            if (this.exportTo) {
-                plugins.push(tauCharts.api.plugins.get('exportTo')(this.exportToConfig))
-            }
-            if (this.facet) {
-                x = this.facet.x;
-                y = this.facet.y;
-            }
+          y: {
+              type: String
+          },
 
-            this.chart = new tauCharts.Chart({
-                type: this.type,
-                x: x,
-                y: y,
-                color: this.color,
-                data: this.data,
-                plugins: plugins
-            });
-            var size = {};
-            if (this.width) {
-                size.width = this.width;
-            }
-            if (this.height) {
-                size.height = this.height;
-            }
-            this.chart.renderTo(this.$.placeholder, size);
-        },
+          color: {
+              type: String
+          },
 
-        detached: function () {
-            this.chart.destroy();
+          facet: {
+              type: Object
+          },
+
+          tooltip: {
+              type: Boolean,
+              value: true
+          },
+
+          legend: {
+              type: Boolean,
+              value: true
+          },
+
+          trendline: {
+              type: Boolean,
+              value: true
+          },
+
+          exportTo: {
+              type: Boolean,
+              value: false
+          },
+
+          exportToConfig: {
+              type: Object,
+              value: {}
+          }
         }
-    });
+      }
+
+      ready() {
+          super.ready();
+          // `ready` is called after all elements have been configured, but
+          // propagates bottom-up. This element's children are ready, but parents
+          // are not.
+          //
+          // This is the point where you should make modifications to the DOM (when
+          // necessary), or kick off any processes the element wants to perform.
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        var x = this.x;
+        var y = this.y;
+        var plugins = [];
+        if (this.tooltip) {
+          plugins.push(tauCharts.api.plugins.get('tooltip')())
+        }
+        if (this.legend) {
+          plugins.push(tauCharts.api.plugins.get('legend')())
+        }
+        if (this.trendline) {
+          plugins.push(tauCharts.api.plugins.get('trendline')())
+        }
+        if (this.exportTo) {
+          plugins.push(tauCharts.api.plugins.get('exportTo')(this.exportToConfig))
+        }
+        if (this.facet) {
+          x = this.facet.x;
+          y = this.facet.y;
+        }
+
+        console.log(this.data);
+        this.chart = new tauCharts.Chart({
+          type: this.type,
+          x: x,
+          y: y,
+          color: this.color,
+          data: this.data,
+          plugins: plugins
+        });
+        var size = {};
+        if (this.width) {
+          size.width = this.width;
+        }
+        if (this.height) {
+          size.height = this.height;
+        }
+        this.chart.renderTo(this.$.placeholder, size);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this.chart.destroy();
+      }
+    };
+
+    window.customElements.define(TauchartsPolymer.is, TauchartsPolymer);
 
 </script>
